@@ -1,7 +1,7 @@
 # MapViewIdCollision
 
-On configuration change, this app will crash because of a ClassCastException when trying to cast AbsSavedState to the custom SavedState implementation in the MyMapView class.
-This is caused by the MyMapView class' view ID conflicting with an ID in the maps.MapView hierarchy.
+On configuration change, this app will crash because of a ClassCastException when trying to cast the custom SavedState implementation in the MyMapView class to AbsSavedState.
+This is caused by the MyMapView class' view ID conflicting with an ID in the maps.MapView hierarchy, which leads to MyMapView#onRestoreInstanceState getting the wrong Parcelable.
 
 This can be worked around by calling View#generateViewId several times to "cycle through" the lower numbers of the AtomicInteger used to provide the ID.
 
